@@ -1,0 +1,166 @@
+---
+title: My first 26.2 miles
+author: ~
+date: '2019-05-18'
+slug: my-first-26-2-miles
+categories: []
+tags: []
+image:
+  caption: ''
+  focal_point: ''
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+
+I hesitate to call what I did a marathon since it wasn’t an official race. There was no bib across my chest, no crowds to cheer me on, and no medal waiting for me across the finish line. All those goodies required a $90  registration fee that I was too cheap to pay. But I still wanted to run the distance to keep healthy and busy.
+
+So on Saturday, May 4, 2019 – after 19 weeks of training – I laced up my running shoes and set out to Fresh Pond, about a mile away from my Cambridge, MA apartment. Once I was there, I kept running the 2.5-mile loop until I hit 26.2 miles. It took me 3 hours, 53 minutes, and 59 seconds, which comes out to an average of 8 minutes, 55 seconds per mile. I stopped once to use the bathroom and about eight times to drink from a water fountain. As an aside to anyone starting to run long distances: running the same loop may not be interesting or scenic, but you can’t beat the regular bathroom and water stops. Plus you don’t have to deal with cross walks or cars.
+
+I started to train on December 24, 2018, using a plan created by a local running studio that my wife, Kate, goes to. After each day of training, I recorded how many miles I ran – along with notes about the shoes I wore, the location of the run, and whether I ran with Kate and a GPS watch. The first few lines of this dataset below.
+
+```{r include = FALSE}
+# Packages needed
+if (!require("tidyverse")) {install.packages("tidyverse")}; require("tidyverse")
+if (!require("plotly")) {install.packages("plotly")}; require("plotly")
+if (!require("reshape2")) {install.packages("reshape2")}; require("reshape2")
+
+# Load data
+read_csv(file = "marathon_training.csv", na = c("")) -> miles
+
+# Training began on 12/24/18
+miles %>%
+  slice(which(date == "12/24/18"):n()) -> miles
+
+# Convert date to date format
+miles %>%
+  mutate(date = as.Date(date, format = "%m/%d/%y")) -> miles
+```
+
+```{r echo = FALSE}
+# View first few lines of data
+miles %>% head() %>% knitr::kable()
+```
+
+I decided to crack open this dataset to learn some things about myself. How well did I actually follow the training plan? When did I deviate from the plan and why might that have been? I also like playing around in R, and learning R Markdown has been on To-Do List. Plus, with my dissertation behind me and job ahead of me, this seemed like a fun way to fill some time.
+
+## I trained a lot
+```{r include = FALSE}
+# Insert dates on which no running took place
+merge(x = data.frame(date = seq.Date(from = as.Date("12/24/18", format = "%m/%d/%y"), 
+                                     to = as.Date("5/5/19", format = "%m/%d/%y"), 
+                                     by = "days")), 
+      y = miles, 
+      by = "date", 
+      all.x = TRUE) -> miles
+
+# Replace NAs in mileage, kate, and watch; add variable for day of week (mon-sun)
+miles %>%
+    mutate(mileage = ifelse(test = is.na(mileage), 
+                            yes = 0,
+                            no = mileage),
+           kate = ifelse(test = is.na(kate), 
+                         yes = 0, 
+                         no = kate),
+           watch = ifelse(test = is.na(watch), 
+                          yes = 0, 
+                          no = watch), 
+           day_of_week = weekdays(date)) -> miles
+
+# Add week index
+miles %>%
+  group_by(day_of_week) %>%
+  mutate(week = 1:n(), 
+         week = factor(week, levels = c(1:max(week)), 
+                       labels = paste("week", c(1:(max(week)))))) -> miles
+```
+
+`r nrow(miles)` days passed between the start of training of `r miles$date[1]` and my personal "marathon" on `r miles$date[miles$date == "2019-05-04"]`. I ran on `r sum(miles$mileage != 0)` of those days (`r paste(round(x = sum(miles$mileage != 0) / nrow(miles) * 100, digits = 0), "%", sep = "")`) for a cumulative distance of `r sum(miles$mileage)` miles, which comes to average of `r round(x = sum(miles$mileage) / nrow(miles), digits = 2)` miles per day. The graph below shows how many miles I ran each day. Hover over any of the dots with your cursor to see more information about that run.
+
+```{r echo = FALSE}
+miles %>%
+  ggplot(mapping = aes(x = date, y = mileage, 
+                       label = day_of_week)) + 
+  geom_point() + 
+  geom_line() + 
+  theme_classic() -> plot_mileage
+
+ggplotly(plot_mileage, 
+         tooltip = c("date", 
+                     "day_of_week", 
+                     "mileage"))
+```
+
+Long runs (10 miles or longer) mostly happened on Saturdays. These long runs got longer as training progressed. But roughly every other week, they were scaled back a bit before the distance increased again. Along the bottom are dots showing days I didn't run at at all. These off days tended to be Fridays and Sundays -- before and after Saturday long runs that benefit from rest before and recovery after. There were runs around 5 miles in length, which happened on Mondays, Tuesdays, Wednesdays, and Thursdays.
+
+## But I didn't train as much as I was supposed to
+
+```{r echo = FALSE}
+miles %>%
+  group_by(week) %>%
+  summarise(actual_weekly_mileage = sum(mileage)) %>%
+  mutate(target_weekly_mileage = c(33, 35, 38, 40, 34, 
+                                   43, 39, 45, 42, 46,
+                                   42, 49, 39, 50, 40,
+                                   54, 44, 35, 24+26.2),
+         delta = actual_weekly_mileage - target_weekly_mileage) %>%
+  melt(measure.vars = c("actual_weekly_mileage", "target_weekly_mileage")) %>%
+  mutate(variable = factor(variable, 
+                           levels = c("actual_weekly_mileage", "target_weekly_mileage"), 
+                           labels = c("miles actually run", "miles supposed to run"))) %>%
+  rename(mileage = value) %>% 
+  ggplot(mapping = aes(x = week, y = mileage, 
+                       color = variable, 
+                       group = variable)) +
+  geom_point() + 
+  geom_line() + 
+  theme_classic() + 
+  theme(legend.title = element_blank()) + 
+  coord_flip() -> plot_actualvstarget
+
+ggplotly(plot_actualvstarget, 
+         tooltip = c("week", "mileage"))
+```
+
+This was a bummer but not surprising. There wasn't a single week when I ran as much as I was supposed to. I came close in weeks 13-15, but the gap was especially bad in week 17 when I was traveling. The two lines track each other pretty closely though: with the exception of weeks 2-3, I increased and decreased my mileage accordingly.
+
+Why did I lose mileage every week? I made a lifestyle choice to take Fridays off when I supposed to run 2 to 5 miles. After running Monday thru Thursday and looking ahead to a long run of at least 10 miles on Saturday, it was nice to be as physically inactive as possible on Friday. Another reason is that I didn't follow the fine print accompanying Tuesday and Thursday speed workouts. I was supposed to warm-up and cool-down by jogging for 20 minutes. I generally warmed-up for only 10 minutes and rarely did I do a completely cool-down. Assuming a 10-minute mile jog pace, these warm-ups and cool-downs were could've counted 8 miles per week. But I wound up only logging about 1 to 2 miles each week. Oops. Now that I think about it, I was lucky not to injure myself by not warming up enough.
+
+## Treadmill runs on weekdays, runs with Kate on weekends
+
+```{r echo = FALSE}
+miles %>%
+  mutate(treadmill = ifelse(test = grepl(pattern = "treadmill", x = notes), 
+                            yes = 1, 
+                            no = 0),
+         weekend = ifelse(test = day_of_week == "Saturday" | day_of_week == "Sunday",
+                          yes = 1, 
+                          no = 0)) -> miles
+
+miles %>%
+  melt(measure.vars = c("weekend", "kate", "treadmill")) %>%
+  mutate(variable = factor(variable, levels = c("kate", "weekend", "treadmill"),
+                           labels = c("run with kate?", "weekend?", "treadmill?")),
+         value = ifelse(test = value == 1, 
+                        yes = "yes", 
+                        no = "no")) %>%
+  ggplot(mapping = aes(x = variable, y = date, 
+                       label = day_of_week,
+                       fill = as.factor(value))) + 
+  geom_tile(width = 0.99) + 
+  coord_flip() + 
+  scale_fill_manual(values = c("azure3", "chartreuse")) + 
+  theme_classic() + 
+  theme(legend.title = element_blank(),
+        axis.title.y = element_blank()) -> plot_treadweekendkate
+
+ggplotly(plot_treadweekendkate, 
+         tooltip = c("date", "day_of_week"))
+
+```
+
+Most of my runs were outdoors since I luckily live in a place with lots of nearby running trails. But sometimes, the weather is just too cold, rainy, or windy to run outdoors, which kind of forces me to run on a treadmill. These treadmill runs took place exclusively on weekdays, which makes sense since weekends are for long runs and recovery, and there’s no way I’d run over 10 miles or just hang out on a treadmill. The green bars in the top rectangle never match up with the green bars in the middle rectangle.
+
+Running is one of the main hobbies my wife, Kate, and I share. She’s a pretty serious runner, having run three marathons and more half marathons, 10Ks, and 5Ks than I can keep track of. When we ran together (green bars in bottom rectangle), they tended to be on weekends since our work schedules don’t really allow for runs together everyday. In December and early January, we ran together pretty often because we were traveling together for the holidays and maybe because of the initial excitement of training. What was a bit unexpected was the on-again, off-again nature of our joint runs: we ran together every Saturday in January, but stopped in February, until we picked things back up again in late February/early March. Right before April, we did a few runs together before putting a pause on things until the end of April/early May. It was probably the excitement of ending the training cycle and the warmer weather that got us out the door together.
