@@ -28,7 +28,7 @@ publishDate: "2019-05-01T00:00:00Z"
 title: Inferring the size of an unobservable population from observable samples
 url_code: 'https://osf.io/7ady5/'
 url_dataset: 'https://osf.io/7ady5/'
-url_pdf: files/2019-cao-banaji-popsize.pdf
+url_pdf: papers/2019-cao-banaji-popsize.pdf
 url_poster: ''
 url_project: ""
 url_slides: ""
