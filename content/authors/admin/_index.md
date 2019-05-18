@@ -1,36 +1,35 @@
 ---
 authors:
 - admin
-bio: My research interests include distributed robotics, mobile computing and programmable
-  matter.
+
 education:
   courses:
   - course: PhD in Social Psychology
     institution: Harvard University
     year: 2019
-  - course: BSc in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2008
+  - course: BA in Psychology
+    institution: Cornell University
+    year: 2010
 email: "jackcao@fas.harvard.edu"
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
-name: Nelson Bighetti
+- Judgment & Decision Making
+- R Stats
+- Social Cognition
+name: Jack Cao
 organizations:
-- name: Stanford University
+- name:
   url: ""
-role: Professor of Artificial Intelligence
+role: Social Psychologist
 social:
 - icon: envelope
   icon_pack: fas
   link: '#contact'
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/GeorgeCushen
+#- icon: twitter
+#  icon_pack: fab
+#  link: https://twitter.com/GeorgeCushen
 - icon: google-scholar
   icon_pack: ai
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
+  link: https://scholar.google.com/citations?user=rh_oN1wAAAAJ&hl=en
 #- icon: github
 #  icon_pack: fab
 #  link: https://github.com/gcushen
