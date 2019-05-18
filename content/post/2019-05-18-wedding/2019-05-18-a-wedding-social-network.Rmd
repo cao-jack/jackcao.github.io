@@ -61,8 +61,9 @@ corrplot::corrplot(corr = admat_full,
   
 ```
 
-A few things pop out.  
-* First, it's symmetrical. So instead of filling in the entire matrix, $134^{2}$...
+A few things pop out about the adjacency matrix.
+  
+* First, it's symmetrical. So instead of filling in all $134^{2}$ entries, we just filled in a little under half, $\frac{134^{2} - 134}{2}$.
 
 
 
