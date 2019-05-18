@@ -6,7 +6,7 @@ all_day: true
 authors: []
 date: "2019-03-08"
 date_end: "2019-03-08"
-event: Invited presentation in talk series called *Emerging Scholars in Psychological Science*
+event: Invited presentation in speaker series called *Emerging Scholars in Psychological Science*
 <!-- event_url: https://example.org -->
 featured: false
 
@@ -15,7 +15,7 @@ location: Princeton, NJ
 math: true
 
 publishDate: "2017-01-01T00:00:00Z"
-summary: Invited presentation in talk series called *Emerging Scholars in Psychological Science*
+summary: Invited presentation in speaker series called *Emerging Scholars in Psychological Science*
 tags: []
 title: Princeton University
 url_code: ""
