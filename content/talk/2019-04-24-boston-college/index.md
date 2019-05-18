@@ -20,7 +20,7 @@ tags: []
 title: Boston College
 url_code: ""
 url_pdf: ""
-url_slides: "files/talk-slides/2019-04-24-bc.pdf"
+url_slides: "presentations/2019-04-24-bc.pdf"
 url_video: ""
 ---
 

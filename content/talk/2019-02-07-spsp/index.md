@@ -19,7 +19,7 @@ summary: Poster presented at *Media & Technology* Preconference
 tags: []
 title: Society for Personality and Social Psychology
 url_code: ""
-url_pdf: "files/talk-slides/2019-02-07-spsp.pdf"
+url_pdf: "presentations/2019-02-07-spsp.pdf"
 url_slides: ""
 url_video: ""
 ---
