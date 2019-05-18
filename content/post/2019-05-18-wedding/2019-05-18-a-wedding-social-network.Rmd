@@ -61,5 +61,9 @@ corrplot::corrplot(corr = admat_full,
   
 ```
 
+A few things pop out.  
+* First, it's symmetrical. So instead of filling in the entire matrix, $134^{2}$...
+
+
 
 
