@@ -97,11 +97,11 @@ A few things pop out about the adjacency matrix.
 
 qgraph(input = admat_full,                               ## Adjacency matrix
        layout = "spring",
-       groups = as.factor(groups$group_label),
+       groups = as.factor(groups$group_label),    
        palette = "ggplot2",
        labels = FALSE,
-       vsize = 1.5,                                        ## Node size
-       #shape = as.character(groups$shape),               ## Node shape
+       vsize = 1.5,                                      ## Node size
+       shape = as.character(groups$shape),               ## Node shape
        border.color = "black",                           ## Border color of nodes
        unCol = "lightgrey",                              ## Edge color
        legend = TRUE)
