@@ -93,7 +93,7 @@ A few things pop out about the adjacency matrix.
 
 <!-- social network -->
 
-```{r echo = FALSE}
+```{r echo = FALSE, fig.dim = c(10, 10)}
 
 qgraph(input = admat_full,                               ## Adjacency matrix
        layout = "spring",
