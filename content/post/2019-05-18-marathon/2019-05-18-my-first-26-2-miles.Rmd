@@ -4,8 +4,8 @@ author: ~
 date: '2019-05-18'
 slug: my-first-26-2-miles
 categories: []
-tags: []
-image:
+tags: ["R","R Markdown", "plotly"]
+image: 
   caption: ''
   focal_point: ''
 ---
