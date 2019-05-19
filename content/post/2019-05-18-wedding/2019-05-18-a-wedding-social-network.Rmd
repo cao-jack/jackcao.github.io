@@ -104,7 +104,8 @@ qgraph(input = admat_full,                               ## Adjacency matrix
        shape = as.character(groups$shape),               ## Node shape
        border.color = "black",                           ## Border color of nodes
        unCol = "lightgrey",                              ## Edge color
-       legend = TRUE)
+       legend = TRUE, 
+       legend.cex = 0.5)
 
 ```
 
