@@ -69,14 +69,14 @@ A few things pop out about the adjacency matrix.
 * Already there's strucutre. In the upper left corner, there's the biggest cluster of people who've all met before, which is Kate's extended family. And closer to the middle is a smaller but still sizeable cluster of people who've also met before, which are people in my lab.  
 * The matrix is relatively sparse. Most squares are white, so lots of guests hadn't met other guests before. This makes sense since we invited people from different parts of our lives: family from China and Chicago, classmates from New Jersey, and colleages in Boston.
 
-```{r echo = FALSE, fig.width = 30}
+```{r echo = FALSE, fig.dim = c(50, 30)}
 
 qgraph(input = admat_full,                               ## Adjacency matrix
        layout = "spring",
        groups = as.factor(groups$group),
        palette = "ggplot2",
        labels = colnames(admat_full),
-       label.cex = 3.75,                                 ## Size of people's names
+       label.cex = 3,                                 ## Size of people's names
        vsize = 1.75,                                     ## Node size
        shape = as.character(groups$shape),         ## Node shape
        border.color = "black",                           ## Border color of nodes
