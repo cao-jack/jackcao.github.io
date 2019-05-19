@@ -117,7 +117,10 @@ Kate and I are in the middle and have the most connections since it's our weddin
 
 Something that wasn't obvious to us until we saw the network is that there are more connections among Kate's friends, co-workers, and family than there are among mine. Whereas the left side of the network (Kate's) is close together, the right side (mine) is more separated. Apparently I lead a more comparmentalized life.
 
-![Some of our guests checking out a poster of the wedding's social network](wedding_poster.jpg)
+```{r fig.show = 'hold'}
+knitr::include_graphics('/img/wedding_poster.jpg')
+```
+
 
 
 
