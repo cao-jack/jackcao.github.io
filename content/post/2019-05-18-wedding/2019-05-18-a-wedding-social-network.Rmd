@@ -119,7 +119,7 @@ Something that wasn't obvious to us until we saw the network is that there are m
 
 Mapping out a wedding's social network could be useful for assigning guests to tables at dinner. It might also help in identifying [bridges](https://en.wikipedia.org/wiki/Bridge_(interpersonal)) between different groups of people. At the very least, you could print it on a poster for guests to look at during cocktail hour. I'm pretty sure this poster got more visitors than all the posters I've presented over the years in grad school.
 
-```{r include = FALSE}
+```{r echo = FALSE}
 knitr::include_graphics('/img/wedding_poster.jpg')
 ```
 
