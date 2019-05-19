@@ -13,8 +13,8 @@ image:
 
 
 <!-- intro -->
-<p>Wedding season will soon be in full swing. During cocktail hour or over the salad course at dinner, a common question that guests ask one another is how they know the happy couple. The answers that come up are localized to <em>particular individuals</em>, which means it’s difficult to get a big picture understanding of how <em>entire groups of people</em> converge to celebrate the start of a marriage.</p>
-<p>Thinking about this shortly before our own wedding last April, my then-fiancee (now wife :smiley:) and I conducted a social network analysis of the guests who would celebrate with us on our special day. So we gathered a list of our 134 guests and placed their names down column A and across row 1 of an Excel spreadsheet, creating a 134 x 134 adjacency matrix. Each entry in the matrix represents if two guests had previously met in any capacity (0 = no, 1 = yes). It took us a couple hours spread over a few days to fill in the matrix, but we ended up with the following. Guests’ names are row and column labels. White squares mean the two guests hadn’t met and black squares mean they had met. Every square along the diagonal is black since guests have of course met themselves.</p>
+<p>Wedding season will soon be in full swing. During cocktail hour or the first course at dinner, a common question that guests ask each other is how they know the happy couple. The answers that come up are localized to <em>particular individuals</em>, which means it’s difficult to get a big picture understanding of how <em>entire groups of people</em> converge to celebrate the start of a marriage.</p>
+<p>Thinking about this shortly before our own wedding last April, Kate (my future wife :smiley:) and I conducted a social network analysis of the guests who would celebrate with us on our special day. So we gathered a list of our 134 guests and placed their names down column A and across row 1 of an Excel spreadsheet, creating a 134 x 134 <a href="https://en.wikipedia.org/wiki/Adjacency_matrix">adjacency matrix</a>. Each entry represents if two guests had previously met (0 = no, 1 = yes). It took us a couple hours spread over a few days to fill in the matrix, but we ended up with the following. Guests’ names are row and column labels. White squares mean the two guests hadn’t met and black squares mean they had met. Every square along the diagonal is black since guests have obviously met themselves.</p>
 <!-- data prep -->
 <!-- adjacency matrix -->
 <div class="figure"><span id="fig:unnamed-chunk-2"></span>
@@ -24,15 +24,14 @@ Figure 1: Adjaceny matrix, organized by each guest’s loading onto the first pr
 </p>
 </div>
 <!-- adjacency matrix discussion -->
-<p>A few things pop out about the adjacency matrix.</p>
+<p>A few things pop out:</p>
 <ul>
-<li>First, it’s symmetrical. So instead of filling in all <span class="math inline">\(134^{2}\)</span> entries, we just filled in a little under half, <span class="math inline">\(\frac{134^{2} - 134}{2}\)</span>.<br />
+<li>It’s symmetrical. So instead of filling in all <span class="math inline">\(134^{2}\)</span> entries, we just filled in a little under half, <span class="math inline">\(\frac{134^{2} - 134}{2}\)</span>.<br />
 </li>
-<li>Already there’s strucutre. In the upper left corner, there’s the biggest cluster of people who’ve all met before, which is Kate’s extended family. And closer to the middle is a smaller but still sizeable cluster of people who’ve also met before, which are people in my lab.<br />
-</li>
-<li>The matrix is relatively sparse. Most squares are white, so lots of guests hadn’t met other guests before. This makes sense since we invited people from different parts of our lives: family from China and Chicago, classmates from New Jersey, and colleages in Boston.</li>
+<li>Already there’s structure (when guests are organized by their loading on the <a href="https://en.wikipedia.org/wiki/Principal_component_analysis">first principal component</a>) In the upper left corner is the biggest cluster of guests who had all met before, which is Kate’s extended family. Closer to the middle is a smaller but still sizeable cluster of guests who had also met before, which are people in my lab.</li>
+<li>The matrix is relatively sparse. Most squares are white, so many hadn’t met other guests before. This makes sense since we invited people from different parts of our lives: family from China and Chicago, classmates from New Jersey, and colleages in Boston.</li>
 </ul>
-<p>To get a clearer picture of our wedding guests’ relation to one another, I convereted the adjacency matrix to the social network below. Each circle represents a person, the hearts represent me and my wife, and the grey lines indicate that the two people who are connectected had previously met. The structure results from the Fruchterman–Reingold algorithm, which, at a high-level, repels unconnected nodes but attracts connected nodes. What’s cool is that this algorithm picks up on clusters that make intuitive sense (see legend colors).</p>
+<p>To get a clearer picture of our wedding guests’ relation to one another, we convereted the adjacency matrix to the social network below. Each circle represents a person, the hearts represent me and my wife, and the grey lines indicate that the two people who are connectected had previously met. The structure results from the <a href="https://en.wikipedia.org/wiki/Force-directed_graph_drawing">Fruchterman–Reingold algorithm</a>, which basically repels unconnected nodes and attracts connected nodes. What’s cool is that this algorithm picks up on clusters that make intuitive sense (see legend colors).</p>
 <!-- social network -->
 <div class="figure"><span id="fig:unnamed-chunk-3"></span>
 <img src="/post/2019-05-18-wedding/2019-05-18-a-wedding-social-network_files/figure-html/unnamed-chunk-3-1.png" alt="Social network of our wedding guests" width="672" />
@@ -41,3 +40,9 @@ Figure 2: Social network of our wedding guests
 </p>
 </div>
 <!-- social network discussion -->
+<p>Kate and I are in the middle and have the most connections since it’s our wedding. It’d be strange if it were any other way. The people on the outer bounds of the network with only few connections were plus ones.</p>
+<p>Something that wasn’t obvious to us until we saw the network is that there are more connections among Kate’s friends, co-workers, and family than there are among mine. Whereas the left side of the network (Kate’s) is close together, the right side (mine) is more separated. Apparently I lead a more comparmentalized life.</p>
+<div class="figure">
+<img src="wedding_poster.jpg" alt="Some of our guests checking out a poster of the wedding’s social network" />
+<p class="caption">Some of our guests checking out a poster of the wedding’s social network</p>
+</div>
