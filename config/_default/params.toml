@@ -134,7 +134,7 @@ sharing = false
   citation_style = "apa"
   
   # Link the title of the publication to the publication
-  links_title = false
+  links_title = true
   # Link the authors of the publication to the list of publication made by this author
   links_authors = false
 
