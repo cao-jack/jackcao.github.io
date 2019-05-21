@@ -19,7 +19,7 @@ Students were 1<sup>st</sup> year Harvard PhD students in psychology and organiz
 * Factor analysis  
 * Structural equation modeling  
   
-### API 201: Quantitative Analysis & Emprical Methods
+### API 201: Quantitative Analysis & Empirical Methods
 Students were 1<sup>st</sup> year masters in public policy students at Harvard Kennedy School of Government. Topics I covered using Microsoft Excel:
 
 * Descriptive statistics  
