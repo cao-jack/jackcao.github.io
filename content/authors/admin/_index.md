@@ -31,13 +31,13 @@ social:
   link: 'mailto:jackcao@fas.harvard.edu'
 #- icon: twitter
 #  icon_pack: fab
-#  link: https://twitter.com/GeorgeCushen
+#  link: https://twitter.com/jcao623
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=rh_oN1wAAAAJ&hl=en
 #- icon: github
 #  icon_pack: fab
-#  link: https://github.com/gcushen
+#  link: https://github.com/cao-jack
 
 superuser: true
 
