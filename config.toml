@@ -68,3 +68,5 @@ ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "
 
 [permalinks]
   post = "/blog/:title"
+  publication = "/papers/:title"
+  talk = "presentations/:title"
