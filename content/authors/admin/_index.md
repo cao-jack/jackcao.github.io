@@ -10,16 +10,21 @@ education:
   - course: BA in Psychology
     institution: Cornell University
     year: 2010
+    
 email: "jackcao@fas.harvard.edu"
 interests:
 - Judgment & Decision Making
 - R Stats
 - Social Cognition
+
 name: Jack Cao
+
 organizations:
 - name:
   url: ""
+  
 role: Social Psychologist
+
 social:
 - icon: envelope
   icon_pack: fas
@@ -33,10 +38,15 @@ social:
 #- icon: github
 #  icon_pack: fab
 #  link: https://github.com/gcushen
+
 superuser: true
+
 user_groups:
 - Researchers
 - Visitors
+
+description: "Jack Cao is a PhD student in social psychology at Harvard University and will soon be a researcher at Facebook."
+
 ---
 
 Thanks for visiting! I'm currently a PhD student in social psychology at Harvard University. I conduct behavioral experiments to understand how we reason about other people. Starting July 2019, I'll be a researcher at Facebook in Menlo Park, CA. 
