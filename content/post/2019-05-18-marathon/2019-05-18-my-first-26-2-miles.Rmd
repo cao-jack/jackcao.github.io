@@ -3,8 +3,9 @@ title: My first 26.2 miles
 author: ~
 date: '2019-05-18'
 slug: my-first-26-2-miles
-categories: []
+categories: ["R"]
 tags: ["R","R Markdown", "plotly"]
+summary: Does this show up?
 image: 
   caption: ''
   focal_point: ''
