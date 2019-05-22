@@ -1,10 +1,11 @@
 ---
-title: A wedding social network
+title: Who's at this wedding?
 author: ~
 date: '2019-05-18'
 slug: a-wedding-social-network
-categories: []
-tags: ["R", "R Markdown", "Social Network"]
+categories: ["R"]
+tags: ["R Markdown", "corrplot", "qgraph"]
+summary: A social network analysis of wedding guests
 image:
   caption: ''
   focal_point: ''

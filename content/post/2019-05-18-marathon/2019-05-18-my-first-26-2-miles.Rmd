@@ -4,8 +4,8 @@ author: ~
 date: '2019-05-18'
 slug: my-first-26-2-miles
 categories: ["R"]
-tags: ["R","R Markdown", "plotly"]
-summary: Does this show up?
+tags: ["R Markdown", "tidyverse", "plotly"]
+summary: Data visualizations of my first big training cycle
 image: 
   caption: ''
   focal_point: ''
