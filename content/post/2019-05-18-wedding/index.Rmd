@@ -110,7 +110,6 @@ qgraph(input = admat_full,                               ## Adjacency matrix
        legend = TRUE, 
        legend.cex = 0.5)
 
-
 ```
 
 <!-- social network discussion -->
