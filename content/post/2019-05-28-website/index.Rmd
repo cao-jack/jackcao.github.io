@@ -1,0 +1,91 @@
+---
+title: Personal websites of Harvard Psych Grad Students & Postdocs
+author: ~
+date: '2019-05-28'
+slug: personal-websites-of-harvard-psych-grad-students-postdocs
+categories: [R]
+tags: [R Markdown]
+image:
+  caption: ''
+  focal_point: ''
+---
+
+Data below were collected by asking the department's administrator for a list of grad students and postdocs during the 2018-2019 academic year. Someone was classified as having a website if:
+
+* Googling "[first name] [last name] harvard psychology" resulted in a website appearing in the first page of results OR  
+* A personal website is linked to on the person's Google Scholar page OR  
+* A personal website is linked to on the primary advisor's lab page  
+
+It's possible that some people have personal websites that don't appear via any of the three methods listed above. But if these websites are that buried and hard to find, they may as well not exist.
+
+```{r setup, include = FALSE}
+
+# packages needed
+if (!require("tidyverse")) {install.packages("tidyverse")}; require("tidyverse")
+if (!require("scales")) {install.packages("scales")}; require("scales")
+
+
+# load data
+read_csv(file = "harvard_website.csv", na = c("")) -> web
+
+# Add G in front of 1-7; capitalize postdoc
+web %>%
+  mutate(year = case_when(year == "1" ~ "G1",
+                          year == "2" ~ "G2",
+                          year == "3" ~ "G3",
+                          year == "4" ~ "G4",
+                          year == "5" ~ "G5",
+                          year == "6" ~ "G6",
+                          year == "7" ~ "G7",
+                          year == "postdoc" ~ "Postdoc")) -> web
+```
+
+## Websites as a function of year
+
+```{r, echo = FALSE}
+
+web %>%
+  group_by(year) %>%
+  filter(year != "G7") %>%
+  summarise(total_n = n(), 
+            n_website = sum(website), 
+            percentage_w_website = n_website/total_n) %>%
+  ggplot(mapping = aes(x = year, y = percentage_w_website)) + 
+  geom_col() + 
+  scale_x_discrete(breaks = c("G1", "G2", "G3", "G4", "G5", "G6", "Postdoc"), 
+                   labels = c("G1\nn = 15", "G2\nn = 13", "G3\nn = 12", "G4\nn = 11", "G5\nn = 16", "G6\nn = 14",
+                              "Postdoc\nn = 46")) + 
+  labs(x = "Year", y = "Percentage with personal website", 
+       title = "Senior grad students & postdocs are more likely to have personal websites") + 
+  scale_y_continuous(label = percent_format(accuracy = 1), 
+                     breaks = seq(0, 0.6, 0.1), position = "top") + 
+  coord_flip()
+  
+
+```
+
+## Websites as a function of advisor
+
+```{r echo = FALSE}
+web %>%
+  mutate(advisor = sapply(strsplit(web$advisor,"/"), `[`, 1)) %>%  # students with more than one advisor count towards just one advisor, the first one listed, which is presumably the primary advisor
+  group_by(advisor) %>%
+  summarise(`number of advisees (grad and postdoc)` = n(),
+            `number with website` = sum(website)) %>%
+  mutate(percentage = round(`number with website`/`number of advisees (grad and postdoc)`, digits = 2)) %>%
+  arrange(desc(percentage)) %>%
+  knitr::kable()
+```
+
+## Websites of Harvard grad students and postdocs
+
+```{r echo = FALSE}
+
+web %>%
+  filter(!is.na(url)) %>%
+  select(student, year, url) %>%
+  rename(name = student) %>%
+  arrange(year, name) %>%
+  knitr::kable()
+
+```
