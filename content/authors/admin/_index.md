@@ -45,8 +45,9 @@ user_groups:
 - Researchers
 - Visitors
 
-description: "Jack Cao is a PhD student in social psychology at Harvard University and will soon be a researcher at Facebook."
+description: "Recent PhD graduate in social psychology and soon-to-be researcher at Facebook"
 
 ---
 
-Thanks for visiting! I'm currently a PhD student in social psychology at Harvard University. I conduct behavioral experiments to understand how we reason about other people. Starting July 2019, I'll be a researcher at Facebook in Menlo Park, CA. 
+Thanks for visiting! I recently received my PhD in social psychology from Harvard University. My dissertation examined the tension between accuracy and fairness and the implications of this tension for the development of artificial intelligence. Starting July 2019, I'll be a researcher at Facebook in Menlo Park, CA.
+
