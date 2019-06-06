@@ -24,7 +24,7 @@ date_format = "Jan 2006"
   company_url = "https://psychology.fas.harvard.edu/"
   location = "Cambridge, MA"
   date_start = "2013-08-01"
-  date_end = ""
+  date_end = "2019-05-30"
 
 [[experience]]
   title = "High School Science Teacher"
