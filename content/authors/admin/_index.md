@@ -11,7 +11,7 @@ education:
     institution: Cornell University
     year: 2010
     
-email: "jackcao@fas.harvard.edu"
+email: "jcao.623@gmail.com"
 interests:
 - Judgment & Decision Making
 - R Stats
@@ -28,7 +28,7 @@ role: Social Psychologist
 social:
 - icon: envelope
   icon_pack: fas
-  link: 'mailto:jackcao@fas.harvard.edu'
+  link: 'mailto:jcao.623@gmail.com'
 #- icon: twitter
 #  icon_pack: fab
 #  link: https://twitter.com/jcao623
