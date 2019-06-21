@@ -49,5 +49,5 @@ description: "Recent PhD graduate in social psychology and soon-to-be researcher
 
 ---
 
-Thanks for visiting! I recently received my PhD in social psychology from Harvard University. My dissertation examined the tension between accuracy and fairness and the implications of this tension for the development of artificial intelligence. Starting July 2019, I'll be a researcher at Facebook in Menlo Park, CA.
+Thanks for visiting! I recently received my PhD in social psychology from Harvard University. My dissertation examined the tension between accuracy and fairness and the implications of this tension for the development of artificial intelligence. Starting July 2019, I'll be a researcher at Facebook in Menlo Park, California.
 
