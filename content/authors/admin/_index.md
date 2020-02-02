@@ -45,7 +45,7 @@ user_groups:
 - Researchers
 - Visitors
 
-description: "Recent PhD graduate in social psychology and soon-to-be researcher at Facebook"
+description: "Quantitative Researcher at Facebook"
 
 ---
 
