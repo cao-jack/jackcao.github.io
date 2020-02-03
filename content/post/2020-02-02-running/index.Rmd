@@ -14,8 +14,9 @@ image:
 ## TLDR 
 * Whenever I ran in 2019, my mileage tended to be an integer. 
 * This tendency was weaker for shorter runs (< 11 miles) and stronger for longer runs (>= 11 miles). 
-* Irrespective of a run's mileage, there was never a run that ended less than a tenth of mile from an integer. 
+* Irrespective of a run's mileage, there was never a run that ended less than a tenth of mile from an integer (i.e., I never ran something point nine something miles).
 * Apparently my running was influenced by the appeal of integer mileage, or the regret of not reaching such a number. 
+* Perhaps running programs should push us to to just below a round number, and then our own motivation can take over from there. 
 
 ```{r include = FALSE}
 # packages needed
@@ -35,9 +36,9 @@ openair::calendarPlot(mydata = run19,
                       main = "Miles run in 2019")
 ```
 
-I was recently reminded of a work on how influential round numbers are in our efforts. For example, students are more likely to [retake the SAT](https://journals.sagepub.com/doi/abs/10.1177/0956797610391098){target="_blank"} when their scores fall just below a round number, and [marathon finising times](https://www.nber.org/papers/w20343){target="_blank"} tend to bunch just below 4 hours rather than above it. I decided to look for evidence of this phenomenon in my own running by looking at how much my mileage on each run deviated from an integer.
+I was recently reminded of a work on how influential round numbers can be. For example, students are more likely to [retake the SAT](https://journals.sagepub.com/doi/abs/10.1177/0956797610391098){target="_blank"} when their scores fall just below a round number, and [marathon finising times](https://www.nber.org/papers/w20343){target="_blank"} tend to bunch just below 4 hours rather than above it. I decided to look for evidence of this phenomenon in my own running by looking at how much my mileage on each run deviated from an integer.
 
-I treated each positive integer as a round number and calculated how much each run's mileage deviated from the closet integer.
+I began by treating each positive integer as a round number and calculated how much each run's mileage deviated from the closet integer.
 
 ```{r}
 # amount off from closest integer mile
@@ -49,7 +50,7 @@ ifelse(test = run19$mileage - floor(x = run19$mileage) <= 0.5,
 run19 %>% tail() %>% knitr::kable()
 ```
 
-The relationship my mileage and the deviation from the closest integer shows that apparently my running was also influenced by the round number phenomenon. However, the influence much weaker for shorter runs (< 11 miles) and much more apparent for longer runs (>= 11 miles). There were some exceptions when runs were longer: race distances that aren't integer lengths and one run where the weather was so hot that I had to cut it short.
+The relationship my mileage and the deviation from the closest integer shows that apparently my running was also influenced by the round numbers. However, the influence much weaker for shorter runs (< 11 miles) and much more apparent for longer runs (>= 11 miles). There were some exceptions when runs were longer: race distances that aren't integer lengths and one run where the weather was so hot that I had to cut it short.
 
 Notably, there was never a run that ended less than a tenth of a mile from an integer (grey rectangle). Just like students trying to avoid a score less than a round number or marathoners trying finsh below 4 hours, I also apparently avoided runs that ended just shy of a nice, round integer mile.
 
@@ -88,8 +89,8 @@ run19 %>%
            color = "#1BB940") + 
   annotate(geom = "rect", xmin = 1, xmax = 27, ymin = -0.11, ymax = -0.01,
            alpha = .2) + 
-  annotate(geom = "text", x = 7, y = -0.06, 
-           label = "There was a never a run that ended\nless a tenth of a mile from an integer", 
+  annotate(geom = "text", x = 6, y = -0.06, 
+           label = "No runs here", 
            color = "black")
 ```
 
@@ -138,6 +139,8 @@ run19 %>%
 
 Of course, the specific training plans I followed, which prescribed certain mileages and lengths of time to run, influenced these data. And training plans tend to prescribe round numbers. Even if this was the underlying mechanism rather than my own psychology, it's still pretty neat to see the round number phenomenon play out in your own life.
 
-Data scientists at [Strava](https://www.strava.com/mobile){target="_blank"} should see if this happens at scale with the many runners who use that app. I also wonder if the stronger influence of round numbers for longer or more involved endeavors can be generalized beyond running. For example, among people who leave their jobs, are they more likely to hit a round number work anniversary (X years as opposed to X years and Y months) the longer they stay at that company? Somebody at LinkedIn should get on this.
+Data scientists at [Strava](https://www.strava.com/mobile){target="_blank"} should see if this happens at scale with the many runners who use that app. And if this holds true, perhaps we should be motivated to run a distance just below a round number, and from there, our own motivation can take over. After all, it's presumably to motivate someone to run 3.9 miles rather 4.0 miles. And once the runner hits 3.9, they might as well go another a tenth of a mile.
+
+I also wonder if the stronger influence of round numbers for longer or more involved endeavors can be generalized beyond running. For example, among people who leave their jobs, are they more likely to hit a round number work anniversary (X years as opposed to X years and Y months) the longer they stay at that company? Somebody at LinkedIn should get on this.
 
 
