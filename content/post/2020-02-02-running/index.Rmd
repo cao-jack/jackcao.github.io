@@ -1,11 +1,14 @@
 ---
 title: "Running towards round numbers"
-author: 'null'
+author: ~
 date: '2020-02-02'
 slug: running-towards-round-numbers
+categories: ["R"]
+tags: ["R Markdown"]
 summary: My running distances weren't immune to the influence of round numbers.
-tags: R Markdown
-categories: R
+image:
+  caption: ''
+  focal_point: ''
 ---
 
 ## TLDR 
@@ -70,7 +73,7 @@ run19 %>%
   labs(x = "Miles Run", 
        y = "Miles below (-) or above (+) closest integer", 
        title = "Integer running", 
-       subtitle = "The length of shorter runs (< 11 miles) tended to deviate more from integers than longer runs (>= 11 miles)") + 
+       subtitle = "The length of shorter runs (< 11 miles)\ntended to deviate more from integers\nthan longer runs (>= 11 miles)") + 
   theme_classic() + 
   theme(axis.text = element_text(color = "black"), 
         legend.position = "none") + 
@@ -85,7 +88,7 @@ run19 %>%
            color = "#1BB940") + 
   annotate(geom = "rect", xmin = 1, xmax = 27, ymin = -0.11, ymax = -0.01,
            alpha = .2) + 
-  annotate(geom = "text", x = 6, y = -0.06, 
+  annotate(geom = "text", x = 7, y = -0.06, 
            label = "There was a never a run that ended\nless a tenth of a mile from an integer", 
            color = "black")
 ```
