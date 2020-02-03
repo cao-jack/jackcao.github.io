@@ -29,9 +29,9 @@ social:
 - icon: envelope
   icon_pack: fas
   link: 'mailto:jcao.623@gmail.com'
-#- icon: twitter
-#  icon_pack: fab
-#  link: https://twitter.com/jcao623
+- icon: twitter
+  icon_pack: fab
+  link: https://twitter.com/jcao623
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=rh_oN1wAAAAJ&hl=en
