@@ -49,5 +49,5 @@ description: "Quantitative Researcher at Facebook"
 
 ---
 
-Thanks for visiting! I'm a Quantiative Researcher at Facebook in Menlo Park, California where I support the Navigation team's efforts to personalize the distribution of products to billions of users. I received my PhD in social psychology at Harvard University where I studided the accuracy (or lack thereof) of people statistical intuitions.
+Thanks for visiting! I'm a Quantiative Researcher at Facebook in Menlo Park, California where I support the Navigation team's efforts to personalize the distribution of products to billions of users. I received my PhD in social psychology at Harvard University where I studied accuracy and error in statistical reasoning.
 
