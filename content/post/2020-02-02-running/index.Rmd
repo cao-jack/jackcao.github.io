@@ -78,13 +78,13 @@ run19 %>%
   theme_classic() + 
   theme(axis.text = element_text(color = "black"), 
         legend.position = "none") + 
-  annotate(geom = "text", x = 15, y = 0.19, 
+  annotate(geom = "text", x = 15, y = 0.22, 
            label = "Half marathons\n(13.10 miles each)",
            color = "#F57670") + 
-  annotate(geom = "text", x = 26, y = 0.28, 
+  annotate(geom = "text", x = 26, y = 0.30, 
            label = "Full marathon\n(26.20 miles)", 
            color = "#649ED4") + 
-  annotate(geom = "text", x = 13.2, y = -0.26, 
+  annotate(geom = "text", x = 13.6, y = -0.28, 
            label = "Hot weather,\ncut this run short", 
            color = "#1BB940") + 
   annotate(geom = "rect", xmin = 1, xmax = 27, ymin = -0.11, ymax = -0.01,
