@@ -86,7 +86,7 @@ run19 %&gt;% tail() %&gt;% knitr::kable()</code></pre>
 <p><img src="/post/2020-02-02-running/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>To confirm the influence of round numbers on my running, I extracted the first digit after the decimal in my mileage distances and looked at their distribution. As expected, there was never a run whose mileage had a 9 in the tenths place (i.e., no run ended in something point nine something miles).</p>
 <p>This distribution indicates that I may have also treated 0.5 as a round number goal during my runs. Just as runs got less frequent as their mileage approached an integer (0.8 less common than 0.7, which was less common than 0.6), the same pattern appears for 0.4, 0.3, and 0.2.</p>
-<p>It’s as if I was telling myself during my runs, consciously or not, “try to it something and a half miles” or “try to hit the next mile.” But once I got just above it, it didn’t matter anymore until I got close to the next round number.</p>
+<p>It’s as if I was telling myself during my runs, consciously or not, “try to run something and a half miles” or “try to hit the next mile.” But once I got just above it, it didn’t matter anymore until I got close to the next round number.</p>
 <pre class="r"><code># tenth place digit
 run19$tenth_place_digit &lt;- as.integer(run19$mileage * 10) %% 10
 

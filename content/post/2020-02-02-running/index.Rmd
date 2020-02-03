@@ -74,7 +74,7 @@ run19 %>%
   labs(x = "Miles Run", 
        y = "Miles below (-) or above (+) closest integer", 
        title = "Integer running", 
-       subtitle = "The length of shorter runs (< 11 miles)\ntended to deviate more from integers\nthan longer runs (>= 11 miles)") + 
+       subtitle = "Shorter runs (< 11 miles) tended to deviate more from integers\nthan longer runs (>= 11 miles)") + 
   theme_classic() + 
   theme(axis.text = element_text(color = "black"), 
         legend.position = "none") + 
@@ -98,7 +98,7 @@ To confirm the influence of round numbers on my running, I extracted the first d
 
 This distribution indicates that I may have also treated 0.5 as a round number goal during my runs. Just as runs got less frequent as their mileage approached an integer (0.8 less common than 0.7, which was less common than 0.6), the same pattern appears for 0.4, 0.3, and 0.2.
 
-It's as if I was telling myself during my runs, consciously or not, "try to it something and a half miles" or "try to hit the next mile." But once I got just above it, it didn't matter anymore until I got close to the next round number.
+It's as if I was telling myself during my runs, consciously or not, "try to run something and a half miles" or "try to hit the next mile." But once I got just above it, it didn't matter anymore until I got close to the next round number.
 
 ```{r}
 # tenth place digit
