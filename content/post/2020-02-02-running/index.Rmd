@@ -1,0 +1,146 @@
+---
+title: "Running towards round numbers"
+author: "null"
+date: '2020-02-02'
+image:
+  caption: ''
+  focal_point: ''
+slug: running-towards-integers
+summary: My running distances weren't immune to the influence of round numbers.
+tags: R Markdown
+categories: R
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+## TLDR 
+* Whenever I ran in 2019, my mileage tended to be an integer. 
+* This tendency was weaker for shorter runs (< 11 miles) and stronger for longer runs (>= 11 miles). 
+* Irrespective of a run's mileage, there was never a run that ended less than a tenth of mile from an integer. 
+* Apparently my running was influenced by the appeal of integer mileage, or the regret of not reaching such a number. 
+
+```{r include = FALSE}
+# packages needed
+if (!base::require("tidyverse")) {utils::install.packages("tidyverse")}; base::require("tidyverse")
+if (!base::require("openair")) {utils::install.packages("openair")}; base::require("openair")
+
+# load data
+load("run19.rda")
+```
+
+I ran the most I ever did in 2019. Each time I ran, I recorded my mileage to track my progress and stay motivated.
+
+```{r echo = FALSE}
+# visualize
+openair::calendarPlot(mydata = run19, 
+                      pollutant = "mileage", 
+                      main = "Miles run in 2019")
+```
+
+I was recently reminded of a work on how influential round numbers are in our efforts. For example, students are more likely to [retake the SAT](https://journals.sagepub.com/doi/abs/10.1177/0956797610391098){target="_blank"} when their scores fall just below a round number, and [marathon finising times](https://www.nber.org/papers/w20343){target="_blank"} tend to bunch just below 4 hours rather than above it. I decided to look for evidence of this phenomenon in my own running by looking at how much my mileage on each run deviated from an integer.
+
+I treated each positive integer as a round number and calculated how much each run's mileage deviated from the closet integer.
+
+```{r}
+# amount off from closest integer mile
+ifelse(test = run19$mileage - floor(x = run19$mileage) <= 0.5, 
+       yes = run19$mileage - floor(x = run19$mileage), 
+       no = (ceiling(run19$mileage) - run19$mileage) * -1) -> run19$delta_closest_int
+
+# view last few lines of data
+run19 %>% tail() %>% knitr::kable()
+```
+
+The relationship my mileage and the deviation from the closest integer shows that apparently my running was also influenced by the round number phenomenon. However, the influence much weaker for shorter runs (< 11 miles) and much more apparent for longer runs (>= 11 miles). There were some exceptions when runs were longer: race distances that aren't integer lengths and one run where the weather was so hot that I had to cut it short.
+
+Notably, there was never a run that ended less than a tenth of a mile from an integer (grey rectangle). Just like students trying to avoid a score less than a round number or marathoners trying finsh below 4 hours, I also apparently avoided runs that ended just shy of a nice, round integer mile.
+
+```{r echo = FALSE}
+# plot
+run19 %>% 
+  dplyr::mutate(single_out = ifelse(test = mileage == 26.22, 
+                                    yes = "Marathon (26.20 Miles)", 
+                                    no = ifelse(test = mileage == 13.13 | mileage == 13.11, 
+                                                yes = "Half Marathon (13.10 Miles)", 
+                                                no = ifelse(test = mileage == 11.78, 
+                                                            yes = "Hot weather\nfelt bad\nduring this run",
+                                                            no = NA)))) %>%
+  ggplot(mapping = aes(x = mileage, y = delta_closest_int, 
+                       color = single_out)) + 
+  geom_point() + 
+  scale_x_continuous(breaks = seq(1, 27, 1)) + 
+  scale_y_continuous(breaks = seq(-0.5, 0.5, 0.1)) + 
+  geom_hline(yintercept = 0) + 
+  geom_vline(xintercept = 11, linetype = "dashed") + 
+  labs(x = "Miles Run", 
+       y = "Miles below (-) or above (+) closest integer", 
+       title = "Integer running", 
+       subtitle = "The length of shorter runs (< 11 miles) tended to deviate more from integers than longer runs (>= 11 miles)") + 
+  theme_classic() + 
+  theme(axis.text = element_text(color = "black"), 
+        legend.position = "none") + 
+  annotate(geom = "text", x = 15, y = 0.19, 
+           label = "Half marathons\n(13.10 miles each)",
+           color = "#F57670") + 
+  annotate(geom = "text", x = 26, y = 0.28, 
+           label = "Full marathon\n(26.20 miles)", 
+           color = "#649ED4") + 
+  annotate(geom = "text", x = 13.2, y = -0.26, 
+           label = "Hot weather,\ncut this run short", 
+           color = "#1BB940") + 
+  annotate(geom = "rect", xmin = 1, xmax = 27, ymin = -0.11, ymax = -0.01,
+           alpha = .2) + 
+  annotate(geom = "text", x = 5.5, y = -0.06, 
+           label = "There was a never a run that ended\nless a tenth of a mile from an integer", 
+           color = "black")
+```
+
+To confirm the influence of round numbers on my running, I extracted the first digit after the decimal in my mileage distances and looked at their distribution. As expected, there was never a run whose mileage had a 9 in the tenths place (i.e., no run ended in something point nine something miles).
+
+This distribution indicates that I may have also treated 0.5 as a round number goal during my runs. Just as runs got less frequent as their mileage approached an integer (0.8 less common than 0.7, which was less common than 0.6), the same pattern appears for 0.4, 0.3, and 0.2.
+
+It's as if I was telling myself during my runs, consciously or not, "try to it something and a half miles" or "try to hit the next mile." But once I got just above it, it didn't matter anymore until I got close to the next round number.
+
+```{r}
+# tenth place digit
+run19$tenth_place_digit <- as.integer(run19$mileage * 10) %% 10
+
+# view last few lines of data
+run19 %>% tail() %>% knitr::kable()
+```
+
+```{r, echo = FALSE}
+run19 %>%
+  dplyr::group_by(tenth_place_digit) %>%
+  dplyr::summarise(n = n()) %>%
+  dplyr::add_row(tenth_place_digit = 9, n = 0) %>%
+  ggplot(mapping = aes(x = tenth_place_digit, y = n)) + 
+  geom_col(width = 0.5) + 
+  coord_cartesian(xlim = c(0, 9), 
+                  ylim = c(0, 100, 10)) + 
+  scale_x_continuous(breaks = seq(0, 9, 1)) + 
+  scale_y_continuous(breaks = seq(0, 100, 10), 
+                     expand = c(0, 0)) + 
+  geom_text(mapping = aes(label = n), vjust = -0.5) + 
+  labs(x = "Tenth place digit in mileage", 
+       y = "Count", 
+       title = "Distribution of tenth place digits", 
+       subtitle = "Was 0.5 also a running goal?") + 
+  theme_classic() + 
+  theme(axis.text = element_text(color = "black")) + 
+  geom_segment(mapping = aes(x = 2, y = 34, xend = 4, yend = 12),
+    arrow = arrow(length = unit(0.03, "npc")), 
+    color = "blue") + 
+  geom_segment(mapping = aes(x = 6, y = 34, xend = 8, yend = 12),
+               arrow = arrow(length = unit(0.03, "npc")), 
+               color = "blue")
+
+```
+
+Of course, the specific training plans I followed, which prescribed certain mileages and lengths of time to run, influenced these data. And training plans tend to prescribe round numbers. Even if this was the underlying mechanism rather than my own psychology, it's still pretty neat to see the round number phenomenon play out in your own life.
+
+Data scientists at [Strava](https://www.strava.com/mobile){target="_blank"} should see if this happens at scale with the many runners who use that app. I also wonder if the stronger influence of round numbers for longer or more involved endeavors can be generalized beyond running. For example, among people who leave their jobs, are they more likely to hit a round number work anniversary (X years as opposed to X years and Y months) the longer they stay at that company? Somebody at LinkedIn should get on this.
+
+
