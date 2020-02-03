@@ -23,7 +23,7 @@ organizations:
 - name:
   url: ""
   
-role: Social Psychologist
+role: Quantitative Researcher
 
 social:
 - icon: envelope
@@ -49,5 +49,5 @@ description: "Quantitative Researcher at Facebook"
 
 ---
 
-Thanks for visiting! I recently received my PhD in social psychology from Harvard University. My dissertation examined the tension between accuracy and fairness and the implications of this tension for the development of artificial intelligence. Starting July 2019, I'll be a researcher at Facebook in Menlo Park, California.
+Thanks for visiting! I'm a Quantiative Researcher at Facebook in Menlo Park, California where I support the Navigation team's efforts to personalize the distribution of products to billions of users. I received my PhD in social psychology at Harvard University where I studided the accuracy (or lack thereof) of people statistical intuitions.
 
