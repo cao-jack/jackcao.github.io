@@ -1,19 +1,12 @@
 ---
 title: "Running towards round numbers"
-author: "null"
+author: 'null'
 date: '2020-02-02'
-image:
-  caption: ''
-  focal_point: ''
-slug: running-towards-integers
+slug: running-towards-round-numbers
 summary: My running distances weren't immune to the influence of round numbers.
 tags: R Markdown
 categories: R
 ---
-
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
-```
 
 ## TLDR 
 * Whenever I ran in 2019, my mileage tended to be an integer. 
@@ -32,7 +25,7 @@ load("run19.rda")
 
 I ran the most I ever did in 2019. Each time I ran, I recorded my mileage to track my progress and stay motivated.
 
-```{r echo = FALSE}
+```{r echo = FALSE, warning = FALSE}
 # visualize
 openair::calendarPlot(mydata = run19, 
                       pollutant = "mileage", 
@@ -92,7 +85,7 @@ run19 %>%
            color = "#1BB940") + 
   annotate(geom = "rect", xmin = 1, xmax = 27, ymin = -0.11, ymax = -0.01,
            alpha = .2) + 
-  annotate(geom = "text", x = 5.5, y = -0.06, 
+  annotate(geom = "text", x = 6, y = -0.06, 
            label = "There was a never a run that ended\nless a tenth of a mile from an integer", 
            color = "black")
 ```
@@ -110,6 +103,7 @@ run19$tenth_place_digit <- as.integer(run19$mileage * 10) %% 10
 # view last few lines of data
 run19 %>% tail() %>% knitr::kable()
 ```
+
 
 ```{r, echo = FALSE}
 run19 %>%
